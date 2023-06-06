@@ -4,7 +4,7 @@ const inputTitle = document.getElementById("1"); // input для ввода за
 const inputBody = document.getElementById("2"); // input для ввода основного текста
 
 
-btn.onclick = function (event) {
+btn.onclick = function (event) {//Добавляем пост на страницу
 
   event.preventDefault();
 
@@ -36,7 +36,7 @@ btn.onclick = function (event) {
 }
 
 
-fetch("https://jsonplaceholder.typicode.com/posts") /// ПОЛУЧАЕМ с сервера список постов и отображаем их на странице
+fetch("https://jsonplaceholder.typicode.com/posts") /// Получаем с сервера список постов и отображаем их на странице
   .then((response) => response.json())
   .then(posts => posts.forEach((item) => {
 
