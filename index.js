@@ -1,7 +1,7 @@
 const btn = document.querySelector('.btn'); // кнопка для нового поста
 
-const inputTitle = document.getElementById("1"); // input для ввода заголовка поста
-const inputBody = document.getElementById("2"); // input для ввода основного текста
+const inputTitle = document.getElementById("inputTitle"); // input для ввода заголовка поста
+const inputBody = document.getElementById("inputBody"); // input для ввода основного текста
 
 
 btn.onclick = function (event) {//Добавляем пост на страницу
@@ -29,18 +29,19 @@ btn.onclick = function (event) {//Добавляем пост на страни�
       <p class="post_body">${newPost.body}</p>`;// создаем новый пост со значениями из value
 
       document.querySelector('.posts').innerHTML = newPostText; // помещаем новый пост в основной контейнер
-      inputTitle.value = " ";
-      inputBody.value = " ";
+      inputTitle.value = "";
+      inputBody.value = "";
+    }).catch((error) => {
+      console.error("Упс, что-то сломалось", error);
     });
-
 }
 
 
 fetch("https://jsonplaceholder.typicode.com/posts") /// Получаем с сервера список постов и отображаем их на странице
   .then((response) => response.json())
   .then(posts => posts.forEach((item) => {
-
     const posts = document.querySelector('.posts'); // основной контейнер для постов
+
 
     const titlePost = document.createElement('h2'); // контейнер для зоголовка поста
     titlePost.className = "post-title";
@@ -53,4 +54,6 @@ fetch("https://jsonplaceholder.typicode.com/posts") /// Получаем с се
     posts.appendChild(titlePost);
     posts.appendChild(bodyPost);
 
-  }))
+  })).catch((error) => {
+    console.error("Упс, что-то сломалось", error);
+  });
